@@ -40,7 +40,8 @@ Une fois sur le **Bureau** :
 ```sh
 # On fait apparaitre la fenêtre "exécuter"
     Win + R
-
+```
+```sh
 # On lance le mode Audit et on redémarre le pc pour commencer la procédure
     %windir%\system32\sysprep\sysprep.exe /audit /reboot
 ```
