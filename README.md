@@ -93,6 +93,7 @@ Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 ```sh
 # Paquet Winget
 Remove-AppPackage Microsoft.Winget.Source_2022.404.1342.992_neutral__8wekyb3d8bbwe
+Remove-AppPackage Microsoft.Winget.Source_2022.405.1321.931_neutral__8wekyb3d8bbwe
 # Wsl Debian
 Remove-AppPackage TheDebianProject.DebianGNULinux_1.1.3.0_x64__76v4gfsz19hv4
 
@@ -105,7 +106,7 @@ del %0
 
 Sans cela, sysprep ne me laisse pas continuer.
 
-Il est possible de consulter le fichier log contenant toutes les erreurs quelques par dans 'system32/sysprep/panther/uctupate.log' ou quelque chose comme ça
+Il est possible de consulter le fichier log contenant toutes les erreurs quelques par dans 'system32/sysprep/panther/setupact.log' ou quelque chose comme ça
 
 En plus de supprimer les paquets du MicroSoft Store, je lance
 
@@ -122,7 +123,7 @@ Ensuite, j'ouvre un terminal et je lance sysprep définitif avec la commande
 ```sh
 [Win+R]
 [cmd.exe]
- C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
+C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
  ```
 
 La VM s'éteint alors. Il est temps de passer à l'etape suivante
@@ -169,7 +170,7 @@ assign letter=E
 Pour le 2ieme disque (Celui qui recevra le fichiers install.wim capturé)
 
 ```sh
-sel vol 2
+sel vol 4
 # Ensuite
 assign letter=G
 ```
