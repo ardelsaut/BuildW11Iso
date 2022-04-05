@@ -230,6 +230,13 @@ On copie le contenu du Dossier 'k.\' vers 'WinSource\'
     -->
     'C:\NonoOS-Build-Ssd\WinSource'
 
+Une fois copié, On copie notre dossier
+
+    C:\NonoOS-Build-Ssd\WinSource
+    -->
+    C:\NonoOS-Build-Ssd\WinSource-modified
+
+
 Une fois **install.wim custom** copié sur le Nas, on peut transférer **install.wim custom** sur le PC hôte
 
     'T:\PC\Windows\BuildW11Iso\install.wim'
@@ -242,23 +249,9 @@ On remplace **install.wim** par **install.wim custom** venant de 'CaptureVM' ver
     -->
     'C:\NonoOS-Build-Ssd\WinSource-modified'
 
+On remplace alors **install.wim** dans le dossier par notre **install.wim custom**
 
-
-
-
-Une fois copié, On copie notre dossier
-
-    C:\NonoOS-Build-Ssd\WinSource
-    -->
-    C:\NonoOS-Build-Ssd\WinSource-modified
-
-On remplace alors
-**install.wim** dans le dossier par notre custom .wim
-
-
-Notre Dossier avec Tout Windows est alors Fait.
-
-On peut ajouter, avant de créer l'iso un fichier 'unattend.xml'
+Notre Dossier avec tout Windows est alors **FINI**.
 
 ```sh
 # Ouvrir cmd Dans Adk kit avec la Commande:
@@ -281,25 +274,12 @@ oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource
 
 ```
 
-Testez l'Iso !
-
-```
-
-Ouvrir Le Programme **Assistant Gestion d’installation**
-et Créer un nouveau Fichier Unatended
-
-```
-
-## Si vous n'avez pas de fichier 'unattend.xml'
-
-
-
-La prochaine étape sera **WinPE**
+## **Testez l'Iso !**
 
 ---
 ---
 
-# WinPE
+# **WinPE**
 
 <!--
 # $timestamp = Get-Date -UFormat "%H:%M_%d-%m-%y" 
