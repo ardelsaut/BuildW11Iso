@@ -35,7 +35,7 @@ C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial nous permetta
 On Installe Win11 **normalement**, on crée un utilisateur, etc.
 Une fois Windows installé, on peut **commencer la procédure** !
 
-Une fois sur le **Bureau** :
+Sur le nouveau **Bureau** dans la VM :
 
 ```sh
 # On fait apparaitre la fenêtre "exécuter"
