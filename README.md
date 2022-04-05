@@ -20,6 +20,31 @@ L'iso alors créé pourra être installé sur plein de machines sans problèmes 
     - Beaucoup d´espace Disque
     - Beaucoup de Ram
 
+## **Mise En Place de L'Espace de Travail**
+
+On crée les Dossiers nécessaire
+
+On crée un dossier :
+
+    New-Item -ItemType Directory -Path "C:\NonoOS-Build-Ssd" -Force
+
+On crée un dossier :
+
+     New-Item -ItemType Directory -Path "C:\NonoOS-Build-Ssd\WinSource" -Force
+
+On crée un dossier :
+
+```sh
+New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\CaptureVM' -Force
+```
+
+On crée un dossier :
+
+```sh
+New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified' -Force
+```
+
+
 ### **Tout d'abord, Il faut créer une VM**
 
 #### Paramètres de la VM :
@@ -33,9 +58,11 @@ L'iso alors créé pourra être installé sur plein de machines sans problèmes 
 
 # **Lancement de la Machine Virtuelle**
 
-On Installe Win11 **normalement**, on crée un utilisateur, etc.
+On Installe Win11 **normalement**, on crée un utilisateur, etc. Si on ne veut pas créer d'utilisateur :
 
-Ctrl+Shift+F3 # Pour entrer directement en mode audit
+Pour entrer directement en mode audit
+
+    [Ctrl]+[Shift]+[F3]
 
 Une fois Windows installé, on peut **commencer la procédure** !
 
@@ -94,6 +121,7 @@ Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 # Paquet Winget
 Remove-AppPackage Microsoft.Winget.Source_2022.404.1342.992_neutral__8wekyb3d8bbwe
 Remove-AppPackage Microsoft.Winget.Source_2022.405.1321.931_neutral__8wekyb3d8bbwe
+Remove-AppPackage Microsoft.Winget.Source_2022.405.1321.931_neutral__8wekyb3d8bbwe
 # Wsl Debian
 Remove-AppPackage TheDebianProject.DebianGNULinux_1.1.3.0_x64__76v4gfsz19hv4
 
@@ -101,6 +129,8 @@ echo Y | del %appdata%\microsoft\windows\recent\automaticdestinations\*
 del %0
 
  cmd.exe /c Cleanmgr /sageset:65535 & Cleanmgr /sagerun:65535
+
+net stop wmpnetworksvc
 
 ```
 
@@ -147,11 +177,11 @@ Dans le Terminal :
 
 ```sh
 diskpart
-# On Remarque que le prompt change nous indiquant que l'on est bien dans Diskpart.
 ```
+- On Remarque que le prompt change nous indiquant que l'on est bien dans Diskpart.
 
+- On liste tous les volumes pour voir nos 2 disques durs.
 ```sh
-# On list tous les volumes pour voir nos 2 disques durs.
 list vol
 ```
 
@@ -163,7 +193,6 @@ Pour le 1er disque
 
 ```sh
 sel vol 1
-# Ensuite
 assign letter=E
 ```
 
@@ -171,7 +200,6 @@ Pour le 2ieme disque (Celui qui recevra le fichiers install.wim capturé)
 
 ```sh
 sel vol 4
-# Ensuite
 assign letter=G
 ```
 
@@ -214,24 +242,9 @@ Si vous avez une clé usb, utilisez cela ou bien même Google Drive.
 
 On monte le même Iso de Windows original
 
-    # Chemin CdRom monté (source originale Windows11)
-    K:\
-
-On crée un dossier :
-
-    C:\NonoOS-Build-Ssd
-
-On crée un dossier :
-
-    C:\NonoOS-Build-Ssd\WinSource
-
-On crée un dossier :
-
-    'C:\NonoOS-Build-Ssd\CaptureVM'
-
-On crée un dossier :
-
-    'C:\NonoOS-Build-Ssd\WinSource-modified'
+- Chemin CdRom monté (source originale Windows11)
+ 
+    ``K:\``
 
 On copie le contenu du Dossier 'k.\' vers 'WinSource\'
 
