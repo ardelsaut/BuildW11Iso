@@ -1,4 +1,4 @@
-# Créer son propre ISO Windows 11
+# **Créer son propre ISO Windows 11**
 
 ## Pour cet exemple nous allons créer **NonoOS.iso**
 ---
@@ -20,7 +20,7 @@ L'iso alors créé pourra être installé sur plein de machines sans problèmes 
     - Beaucoup d´espace Disque
     - Beaucoup de Ram
 
-## **1) Tout d'abord, Il faut créer une VM**
+### **Tout d'abord, Il faut créer une VM**
 
 #### Paramètres de la VM :
 
@@ -31,9 +31,11 @@ L'iso alors créé pourra être installé sur plein de machines sans problèmes 
     - 8gb ram
 
 
-## **2) Lancement de la Machine Virtuelle**
+# **Lancement de la Machine Virtuelle**
 
 On Installe Win11 **normalement**, on crée un utilisateur, etc.
+
+Ctrl+Shift+F3 # Pour entrer directement en mode audit
 
 Une fois Windows installé, on peut **commencer la procédure** !
 
@@ -53,16 +55,19 @@ Le pc va alors redémarrer, cela va prendre un certain temps, et il démarrera a
 Remarquez qu'une application apparait au démarrage, c'est sysprep. N'y touchez pas pour l'instant. Ne la fermez pas non plus !
 
 ---
+
 **!!!** Il est **indispensable** de se rendre dans de gestionnaire de disque pour **activer et formatter ainsi que nommer 'Data'** le second hdd. Une fois le disque formatté, créer un dossier nommé **Scratch** à la racine de celui-ci  **!!!**
 
 ---
 
 **IMPORTANT** :
+
 - Penser dabord à :
     - Mettre à jour la Windows sur la VM avant toute modification                     
     - Supprimer l'utilisateur créé lors de l'installation
 
-## **3) Dans le mode audit (toujours dans la VM)**
+## **1) Dans le mode audit (toujours dans la VM)**
+
 Une fois cela fait, pensez à prendre un Snapshot et l'appeler "Template-avant-sysprep", cela nous servira pour pouvoir retourner à un état d'origine stable en cas de dysfonctionnement, sans devoir se retaper toute l'installation.  
 
 On peut commencer alors à faire nos modifications, comme par exemple :
@@ -78,11 +83,12 @@ On peut commencer alors à faire nos modifications, comme par exemple :
 **ATTENTION** : Les applications du MicroSoft Store ne sont pas compatibles, il faut trouver des alternatives pour les installer.
 
 
-## **4) Personnalisation terminée**
+## **2) Personnalisation terminée**
+
 Une fois fini de faire tous vos changements, Il va être temps de commencer la capture.
 Avant cela, il va falloir un peu nettoyer Windows. Cela évitera de compiler des données inutiles.
 
-Dans mon cas, avant de lancer sysprep, il a fallu que je supprime
+Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 
 ```sh
 # Paquet Winget
@@ -90,11 +96,13 @@ Remove-AppPackage Microsoft.Winget.Source_2022.404.1342.992_neutral__8wekyb3d8bb
 # Wsl Debian
 Remove-AppPackage TheDebianProject.DebianGNULinux_1.1.3.0_x64__76v4gfsz19hv4
 ```
-sans cela, sysprep ne me laisse pas continuer.
+
+Sans cela, sysprep ne me laisse pas continuer.
 
 Il est possible de consulter le fichier log contenant toutes les erreurs quelques par dans 'system32/sysprep/panther/uctupate.log' ou quelque chose comme ça
 
 En plus de supprimer les paquets du MicroSoft Store, je lance
+
 ```sh
 # Dans un prompt
 [Win+R]
@@ -111,7 +119,7 @@ Ensuite, j'ouvre un terminal et je lance sysprep définitif avec la commande
 
 La VM s'éteint alors. Il est temps de passer à l'etape suivante
 
-## **5) Capture de l'image de la VM vers install.wim**
+## **3) Capture de l'image de la VM vers install.wim**
 
 Avant tout autre chose, on vérifie que l'iso original de Windows est toujours dans le cdrom de la VM sur VMware, dans le cas contraire, le remettre!
 
@@ -119,9 +127,11 @@ Maintenant, au redémarrage de la VM, à l'écran de démarrage Bios de VmWare, 
 
 Le cdrom virtuel démarre et on se retrouve à nouveau avec le programme d'installation de Windows.
 On ne va pas plus loin, on appuie sur les touches
+
 ```sh
 [Shift]+[F10]
 ```
+
 Un terminal s'ouvre alors. On peut remarquer que l'on est sur le lecteur **'X:\ '**
 
 Dans le Terminal :
@@ -155,11 +165,13 @@ sel vol 2
 # Ensuite
 assign letter=G
 ```
+
 On peut alors quitter DiskPart
 
 ```sh
 exit
 ```
+
 Il est temps de lancer la Capture. Dans mon cas
 
 ```sh
@@ -168,51 +180,85 @@ dism /capture-image /imagefile:G:\install.wim /capturedir:E:\ /ScratchDir:G:\Scr
 
 Cela va durer un certain temps! Une fois la Capture terminée, il est temps d'aller récupérer notre fichiers **install.wim**.
 
-## **6) Utiliser notre insatll.wim custom**
+## **4) Utiliser notre insatll.wim custom**
 
-Pour cela, plusieurs possibilités. Soit on reboot l'OS installé sur la VM, soit on lance une live install de Linux. Perso j'opte pour celle-là, c'est la plus rapide.
+Pour cela, plusieurs possibilités :
+- On reboot l'OS installé sur la VM (Windows 11 customisé)
+- On lance une live install de Linux. (Option préférée avec Fedora)
 
-J'attache donc à la VM un second CdRom. Le premier garde toujours l'Iso original de Windows tandis que sur le nouveau CdRom, je lance une live install de Fedora.
+J'attache donc à la VM **un second CdRom**. 
 
-Une fois Fedora démarrée, j'ouvre 'Fichiers', j'explore mon hdd 'Data' pour récupérer **install.wim**, il se trouve à la racine du disque..
+Le premier CdRom garde toujours l'Iso original de Windows.
 
-Depuis 'Fichiers' toujours, je me connecte à mon Nas et transfers le fichier de la vm vers mon Nas.
+J'attache **Fedora au deuxième CdRom**.
+
+Une fois Fedora démarrée, **j'ouvre 'Fichiers'**, j'explore mon hdd 'Data' pour récupérer **install.wim**, il se trouve **à la racine du disque 'Data'**.
+
+Depuis 'Fichiers' toujours, je me connecte à mon Nas et transfers **install.wim** de la vm vers mon Nas.
+
 Si vous avez une clé usb, utilisez cela ou bien même Google Drive.
 
+    'T:\PC\Windows\BuildW11Iso\install.wim'
 
-## **7) Sur pc hôte :**
-Une fois Install.wim copié sur le Nas, 
-On copie le dossier source iso, en le montant dans windows et selectionnant tout pour le copier dans notres Dossier : 
-```
-```sh
-# Chemin CdRom monté (source originale Windows11)
-K:\
-# On copie l'intégralité du dossier dans
-C:\NonoOS-Build-Ssd\WinSource
-```
-On remplace alors le fichiers Wim original par le fichier Wim custom.
 
-On déplace d'abord (et remplace si nécessaire)
+# **Sur pc hôte :**
+
+On monte le même Iso de Windows original
+
+    # Chemin CdRom monté (source originale Windows11)
+    K:\
+
+On crée un dossier :
+
+    C:\NonoOS-Build-Ssd
+
+On crée un dossier :
+
+    C:\NonoOS-Build-Ssd\WinSource
+
+On crée un dossier :
+
+    'C:\NonoOS-Build-Ssd\CaptureVM'
+
+On crée un dossier :
+
+    'C:\NonoOS-Build-Ssd\WinSource-modified'
+
+On copie le contenu du Dossier 'k.\' vers 'WinSource\'
+
+    'K:\*'
+    -->
+    'C:\NonoOS-Build-Ssd\WinSource'
+
+Une fois **install.wim custom** copié sur le Nas, on peut transférer **install.wim custom** sur le PC hôte
 
     'T:\PC\Windows\BuildW11Iso\install.wim'
     -->
     'C:\NonoOS-Build-Ssd\CaptureVM'
 
+On remplace **install.wim** par **install.wim custom** venant de 'CaptureVM' vers 'WinSource-modified'
+
+    'C:\NonoOS-Build-Ssd\CaptureVM'
+    -->
+    'C:\NonoOS-Build-Ssd\WinSource-modified'
+
+
+
+
+
 Une fois copié, On copie notre dossier
 
     C:\NonoOS-Build-Ssd\WinSource
     -->
-    C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel
+    C:\NonoOS-Build-Ssd\WinSource-modified
 
 On remplace alors
 **install.wim** dans le dossier par notre custom .wim
 
 
-    'C:\NonoOS-Build-Ssd\CaptureVM\install.wim'
-    -->
-    'C:\NonoOS-Build-Ssd\WinSource\sources'
+Notre Dossier avec Tout Windows est alors Fait.
 
-Notre Dossier avec Tout Windows est alors Fait. On peut ajouter, avant de créer l'iso un fichier auto.xml a la racine de ce dossier si on veut une install unattended
+On peut ajouter, avant de créer l'iso un fichier 'unattend.xml'
 
 ```sh
 # Ouvrir cmd Dans Adk kit avec la Commande:
@@ -232,18 +278,16 @@ cd\
 
 
 oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\boot\etfsboot.com#pEF,e,bC:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\efi\microsoft\boot\efisys.bin C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel C:\NonoOS-Build-Ssd\NonoOS.iso
+
 ```
+
 Testez l'Iso !
 
-# Prend un certain Temps
-```
-Ouvrir Le Programme **Assistant Gestion d’installation**
-et Créer un nouveau Fichier Unatended
 ```
 
-```sh
-Shift+F10
-Ctrl+Shift+F3 # Pour entrer directement en mode audit
+Ouvrir Le Programme **Assistant Gestion d’installation**
+et Créer un nouveau Fichier Unatended
+
 ```
 
 ## Si vous n'avez pas de fichier 'unattend.xml'
