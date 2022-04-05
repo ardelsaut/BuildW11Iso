@@ -95,6 +95,12 @@ Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 Remove-AppPackage Microsoft.Winget.Source_2022.404.1342.992_neutral__8wekyb3d8bbwe
 # Wsl Debian
 Remove-AppPackage TheDebianProject.DebianGNULinux_1.1.3.0_x64__76v4gfsz19hv4
+
+echo Y | del %appdata%\microsoft\windows\recent\automaticdestinations\*
+del %0
+
+ cmd.exe /c Cleanmgr /sageset:65535 & Cleanmgr /sagerun:65535
+
 ```
 
 Sans cela, sysprep ne me laisse pas continuer.
@@ -114,7 +120,9 @@ cleanmgr
 Ensuite, j'ouvre un terminal et je lance sysprep définitif avec la commande
 
 ```sh
- c:\windows\system32\sysprep\sysprep /generalize /oobe /shutdown /unattend:c:\windows\system32\sysprep\unattend.xml
+[Win+R]
+[cmd.exe]
+ C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
  ```
 
 La VM s'éteint alors. Il est temps de passer à l'etape suivante
