@@ -54,6 +54,7 @@ New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified' -For
     - encrypted (pour module TPM)
     - 2 hdd min 50gb (compatible Windows)
     - 8gb ram
+    - 2 périphériques Cdrom attaché
 
 
 # **Lancement de la Machine Virtuelle**
@@ -180,7 +181,8 @@ diskpart
 ```
 - On Remarque que le prompt change nous indiquant que l'on est bien dans Diskpart.
 
-- On liste tous les volumes pour voir nos 2 disques durs.
+On liste tous les volumes pour voir nos 2 disques durs :
+
 ```sh
 list vol
 ```
@@ -189,35 +191,45 @@ Je constate que mes disques dur n'ont pas de lettres assignées, donc je les ass
 
 Mon disque source avec le Windows que je viens de configuré se trouve sur le Volume 1, donc
 
-Pour le 1er disque
+Pour le 1er disque, on le sélectionne d'abord :
 
 ```sh
 sel vol 1
+```
+
+ensuite, on lui assigne la lettre correcte :
+
+```sh
 assign letter=E
 ```
 
-Pour le 2ieme disque (Celui qui recevra le fichiers install.wim capturé)
+Pour le 2ieme disque (Celui qui recevra le fichiers install.wim capturé), on le sélectionne d'abord :
 
 ```sh
 sel vol 4
+```
+
+ensuite, on lui assigne la lettre correcte :
+
+```sh
 assign letter=G
 ```
 
-On peut alors quitter DiskPart
+On peut alors quitter DiskPart :
 
 ```sh
 exit
 ```
 
-Il est temps de lancer la Capture. Dans mon cas
+Il est temps de lancer la Capture. Dans mon cas :
 
 ```sh
 dism /capture-image /imagefile:G:\install.wim /capturedir:E:\ /ScratchDir:G:\Scratch /name:"NonoOS" /compress:maximum /checkintegrity /verify /bootable
 ```
 
-Cela va durer un certain temps! Une fois la Capture terminée, il est temps d'aller récupérer notre fichiers **install.wim**.
+Cela va durer un certain temps !  Une fois la Capture terminée, il est temps d'aller récupérer notre fichiers **install.wim custom**. Pour rappel, il se trouve alors à la racine de notre 2ième hdd, nommé au préalable 'Data'.
 
-## **4) Utiliser notre insatll.wim custom**
+## **4) Utiliser notre install.wim custom**
 
 Pour cela, plusieurs possibilités :
 - On reboot l'OS installé sur la VM (Windows 11 customisé)
