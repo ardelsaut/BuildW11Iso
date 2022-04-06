@@ -6,19 +6,20 @@
 ### **Introduction**
 ---
 Pour créer son propre iso Windows, Il y a plein de manières différentes. Ici,  on va utiliser **sysprep**.
-C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système. 
+C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système custom. 
 
 L'iso alors créé pourra être installé sur plein de machines sans problèmes avec toutes nos personnalisations et programmes. 
 
 ### **Prérequis**
 
-    - Vmware
-    - Windows ADK
-    - 2 Iso Windows 11, Une machine hôte à jour avec Windows 11 installé une VM avec win11 que l´on clonera
-    - Fichier 'unattend.xml' (Optionnel)
-    - Un serveur ou une Clé Usb ou un Drive
-    - Beaucoup d´espace Disque
-    - Beaucoup de Ram
+- Vmware ou VirtualBox ou Qemu
+- Windows ADK
+- 2 Windows 11, Une machine hôte à jour avec Windows 11 installé une VM avec win11 que l´on clonera
+- Iso Live Install **Fedora**
+- Fichier 'unattend.xml' (Optionnel)
+- Un serveur ou une Clé Usb ou un Drive
+- Beaucoup d´espace Disque
+- Beaucoup de Ram
 
 ## **Mise En Place de L'Espace de Travail**
 
@@ -129,7 +130,7 @@ Remove-AppPackage TheDebianProject.DebianGNULinux_1.1.3.0_x64__76v4gfsz19hv4
 echo Y | del %appdata%\microsoft\windows\recent\automaticdestinations\*
 del %0
 
- cmd.exe /c Cleanmgr /sageset:65535 & Cleanmgr /sagerun:65535
+cleanmgr /sageset:65535 & Cleanmgr /sagerun:65535
 
 net stop wmpnetworksvc
 
@@ -153,7 +154,6 @@ Ensuite, j'ouvre un terminal et je lance sysprep définitif avec la commande
 
 ```sh
 [Win+R]
-[cmd.exe]
 C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
  ```
 
@@ -221,7 +221,7 @@ On peut alors quitter DiskPart :
 exit
 ```
 
-Il est temps de lancer la Capture. Dans mon cas :
+Il est temps de lancer la capture de notre **install.wim custom**. Dans mon cas :
 
 ```sh
 dism /capture-image /imagefile:G:\install.wim /capturedir:E:\ /ScratchDir:G:\Scratch /name:"NonoOS" /compress:maximum /checkintegrity /verify /bootable
@@ -304,11 +304,17 @@ cd\
 # C:\Windows\system32\cmd.exe /k "C:\Program Files (x86)\Windows Kits\11\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat" 
 
 
-oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\boot\etfsboot.com#pEF,e,bC:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\efi\microsoft\boot\efisys.bin C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel C:\NonoOS-Build-Ssd\NonoOS.iso
+oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource-modified\boot\etfsboot.com#pEF,e,bC:\NonoOS-Build-Ssd\WinSource-modified\efi\microsoft\boot\efisys.bin C:\NonoOS-Build-Ssd\WinSource-modified C:\NonoOS-Build-Ssd\NonoOS.iso
 
 ```
 
 ## **Testez l'Iso !**
+
+# Encore à Faire dans vm de config
+
+mettre a jour windows
+
+Fedora
 
 ---
 ---
