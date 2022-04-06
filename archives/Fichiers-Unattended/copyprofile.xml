@@ -4,6 +4,10 @@
         <package action="configure">
             <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.22000.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
             <selection name="Windows-Defender-Default-Definitions" state="false" />
+            <selection name="Microsoft-Windows-Subsystem-Linux" state="true" />
+            <selection name="Microsoft-Hyper-V-All" state="true" />
+            <selection name="SMB1Protocol" state="false" />
+            <selection name="VirtualMachinePlatform" state="true" />
         </package>
     </servicing>
     <settings pass="specialize">
@@ -23,7 +27,7 @@
             <InputLocale>0c0a:0000040a</InputLocale>
             <SystemLocale>fr-FR</SystemLocale>
             <UILanguage>fr-FR</UILanguage>
-            <UILanguageFallback>fr-FR</UILanguageFallback>
+            <UILanguageFallback>en-EN</UILanguageFallback>
             <UserLocale>fr-FR</UserLocale>
         </component>
         <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -50,6 +54,14 @@
                     <Path>reg add HKLM\System\Setup\LabConfig /v BypassCPUCheck /t reg_dword /d 0x00000001 /f</Path>
                     <Order>5</Order>
                 </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>6</Order>
+                    <Path>reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Communications /v ConfigureChatAutoInstall /t REG_DWORD /d 0 /f</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>7</Order>
+                    <Path>reg add &quot;HKLM\Software\Policies\Microsoft\Windows\Windows Chat&quot; /v ChatIcon /t REG_DWORD /d 2 /f</Path>
+                </RunSynchronousCommand>
             </RunSynchronous>
         </component>
     </settings>
@@ -73,6 +85,14 @@
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <ProtectYourPC>1</ProtectYourPC>
             </OOBE>
+            <DesktopOptimization>
+                <ShowWindowsStoreAppsOnTaskbar>false</ShowWindowsStoreAppsOnTaskbar>
+                <GoToDesktopOnSignIn>true</GoToDesktopOnSignIn>
+            </DesktopOptimization>
+            <ConfigureChatAutoInstall>false</ConfigureChatAutoInstall>
+            <TimeZone>Romance Standard Time</TimeZone>
+            <ShowPowerButtonOnStartScreen>true</ShowPowerButtonOnStartScreen>
+            <DoNotCleanTaskBar>true</DoNotCleanTaskBar>
         </component>
         <component name="Microsoft-Windows-International-Core" processorArchitecture="wow64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <InputLocale>0c0a:0000040a</InputLocale>
@@ -88,6 +108,30 @@
         </component>
         <component name="Security-Malware-Windows-Defender" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DisableAntiSpyware>true</DisableAntiSpyware>
+        </component>
+    </settings>
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserData>
+                <ProductKey>
+                    <WillShowUI>OnError</WillShowUI>
+                    <Key>VK7JG-NPHTM-C97JM-9MPGT-3V66T</Key>
+                </ProductKey>
+                <AcceptEula>true</AcceptEula>
+                <FullName>Arnaud Delsaut</FullName>
+                <Organization>NonoOS.org</Organization>
+            </UserData>
+            <EnableNetwork>true</EnableNetwork>
+        </component>
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>fr-FR</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>0c0a:0000040a</InputLocale>
+            <SystemLocale>fr-FR</SystemLocale>
+            <UILanguage>fr-FR</UILanguage>
+            <UILanguageFallback>en-EN</UILanguageFallback>
+            <UserLocale>fr-FR</UserLocale>
         </component>
     </settings>
     <cpi:offlineImage cpi:source="wim:c:/nonoos-build-ssd/winsource/sources/install.wim#Windows 10 Pro for Workstations" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
