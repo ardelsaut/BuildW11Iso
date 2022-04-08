@@ -3,14 +3,14 @@
 ## Pour cet exemple nous allons créer **NonoOS.iso**
 ---
 
-### **Introduction**
+## **Introduction**
 ---
 Pour créer son propre iso Windows, Il y a plein de manières différentes. Ici,  on va utiliser **sysprep**.
 C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système custom. 
 
 L'iso alors créé pourra être installé sur plein de machines sans problèmes avec toutes nos personnalisations et programmes. 
 
-### **Prérequis**
+## **Prérequis**
 
 - [Vmware](https://www.vmware.com/products/workstation-player.html) ou VirtualBox ou Qemu
 - [Windows ADK](https://download.microsoft.com/download/1/f/d/1fd2291e-c0e9-4ae0-beae-fbbe0fe41a5a/adk/adksetup.exe)
@@ -21,9 +21,11 @@ L'iso alors créé pourra être installé sur plein de machines sans problèmes 
 - Beaucoup d´espace Disque
 - Beaucoup de Ram
 
-## **Mise En Place de L'Espace de Travail**
+---
 
-On crée les Dossiers nécessaire
+## **Mise En Place de L'Espace de Travail sur le système HÔTE**:
+
+### On crée les **dossiers nécessaires**
 
 On crée un dossier :
 
@@ -51,16 +53,18 @@ New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified' -For
 ### **Tout d'abord, Il faut créer une VM**
 
 #### Paramètres de la VM :
-
-    - Uefi + Secure Boot activé (On va le bypass ici, mais optionnel)
-    - encrypted (pour module TPM) (On va le bypass ici, mais optionnel)
+    - UEFI
     - Mode pont pour la connexion internet ou Clé Usb grosse capacité (optionnel)
     - 2 hdd min 50gb (compatible Windows)
     - 8gb ram
     - périphérique Cdrom attaché
         
-Dans ce tuto,  je vais edit le registre pour pouvoir installer Win11 sur
-une vm sans le minimum requis, si vous sautez cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows11. Jchoisis de Bypass pour pouvoir mapper les lecteurs de VMware sur la machine Hote. Si on crypte la vm comme nécessaire pour le module TPMon ne peut plus mapper les Lecteurs.
+Dans ce tuto, je vais éditer le registre pour pouvoir installer Windows 11 sur une vm sans le minimum requis, si vous décidez de sauter cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows 11.
+
+    - Secure Boot activé (On va le bypass ici, mais optionnel)
+    - encrypted (pour module TPM) (On va le bypass ici, mais optionnel)
+
+Je choisis de Bypass pour pouvoir mapper les lecteurs de VMware sur la machine Hote. Si on crypte la vm comme nécessaire pour le module TPMon ne peut plus mapper les Lecteurs.
     
 
 Voir [ici]() la config de ma VM
@@ -69,43 +73,139 @@ Voir [ici]() la config de ma VM
 
 # **Lancement de la Machine Virtuelle**
 
-On Installe Win11 **normalement**, on crée un utilisateur, etc. Si on ne veut pas créer d'utilisateur :
+On va commencer par installer windows 11, pas besoin de clés!
+Lorsque l'on est sur l'écran de sélection des Éditions de Windows, on appuie sur les touches du clavier suivantes, pour éditer les clés de Registre.
+   
+    [Shift] + [F10]
+
+pour ouvrir l'Invite de Commande
+
+## En gui
+
+On écrit sur l'invite de Commande qui vient d'apparaitre
+    
+    regedit + [ENTER]
+
+On navigue alors vers le répertoire
+
+' **HKEY_LOCAL_MACHINE->SYSTEM->Setup** '
+
+Clique droit sur :
+```sh
+setup
+```
+```sh
+->nouveau->clé
+```
+Nom de la nouvelle clé :
+```sh
+Labconfig
+```
+Dans la Nouvelle Clé :
+
+```sh
+[Right + Click]->Nouvelle->Valeur DWORD (32-bit)
+```
+Nom de la nouvelle Valeur :
+```sh
+BypassTPMCheck
+```
+Dans la Nouvelle Clé à nouveau :
+```sh
+[Right + Click]->Nouvelle->Valeur DWORD (32-bit)
+```
+Nom de la nouvelle Valeur :
+```sh
+BypassSecureBootCheck
+```
+
+on double clique sur chaque clés créées et on leur donne comme Valeur
+```sh
+1 
+```
+
+## En CLI
+
+```sh
+REG ADD HKLM\SYSTEM\Setup\Labconfig /v BypassTPMCheck /t REG_DWORD /d 1
+REG ADD HKLM\SYSTEM\Setup\Labconfig /v BypassSecureBootCheck /t REG_DWORD /d 1
+```
+
+Voilà, on a Bypass le check de Windows 11, on peut fermer Regedit et l'Invite de Commande pour continuer l'installation.
+
+On continue d'installer Windows **normalement**. On ne va pas plus loin que le premier redémarrage, une fois Windows installé sur C.\
+
+Maintenant qu'on est sur le premier écran de configuration (écran de sélection de la Région), on va directement faire rentrer Windows en mode Audit, comme ça on évite de créer un nouvel utilisateur.
 
 Pour entrer directement en mode audit
 
     [Ctrl]+[Shift]+[F3]
 
-Une fois Windows installé, on peut **commencer la procédure** !
+Le pc va alors redémarrer en mode audit.
 
-#### Sur le nouveau **Bureau** dans la VM :
+Le pc redémarré, nous sommes sur le Compte Administrateur, on peut commencer à personnaliser ce que l'on veut.
+
+---
+
+## On peut **commencer la procédure** !
+
+#### Sur le nouveau **Bureau** dans la **VM** :
 
     On fait apparaitre la fenêtre "exécuter"
     [Win+R]
 
-#### On lance le mode Audit et on redémarre le pc pour commencer la procédure :
-
-```sh
-%windir%\system32\sysprep\sysprep.exe /audit /reboot
-```
 
 Le pc va alors redémarrer, cela va prendre un certain temps, et il démarrera automatiquement avec une session utilisateur **Administrateur** active. C'est dans cette session que l'on va faire tout nos changements avant de pouvoir les capturer. 
 
-Remarquez qu'une application apparait au démarrage, c'est sysprep. N'y touchez pas pour l'instant. Ne la fermez pas non plus !
-
----
+Remarquez qu'une application apparait au démarrage, c'est sysprep. Vous pouvez la fermer avec la croix.
 
 🔴IMPORTANT 
 
-Il est <span style="color:red">**indispensable**</span> de se rendre dans de gestionnaire de disque pour **activer et formatter ainsi que nommer 'Data'** le second hdd. Une fois le disque formatté, créer un dossier nommé **Scratch** à la racine de celui-ci  !
+Il est <span style="color:red">**indispensable**</span> d'activer le deuxième hdd créé avec la VM
+
+**En Gui** :
+
+se rendre dans de gestionnaire de disque
+
+Nommer **'Windows'** le premier hdd
+
+**activer** et **formatter** ainsi que **nommer** **'Data'** et **aasigner** lettre **G:\\** le second hdd. 
+
+**En CLI** :
+
+Dans Poershell
+
+```sh
+diskpart
+list disk
+sel disk 1
+clean
+create partition primary
+format fs=ntfs
+list vol
+sel vol 4
+assign letter=G
+exit
+
+label C:Windows
+label G:Data
+```
 
 
----
+
+Une fois le deuxième disque formatté, créer un dossier nommé **Scratch** à la racine de celui-ci  !
+```sh
+# Dans cmd.exe 
+New-Item -ItemType Directory -Path "G:\Scratch" -Force
+```
+
 
 🔴IMPORTANT 
-
 - Penser dabord à :
-    - Mettre à jour la Windows sur la VM avant toute modification                     
-    - Supprimer l'utilisateur créé lors de l'installation
+    - Mettre à jour la Windows sur la VM avant toute modification, vous pouvez redémarrer la machine, elle reviendra en mode audit sur le compte Administrateur.
+    - Supprimer l'utilisateur créé lors de l'installation (Optionnel si vous avez choisi de ne pas passer directement en mode audit)
+
+---
 
 ## **1) Dans le mode audit (toujours dans la VM)**
 
