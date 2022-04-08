@@ -46,8 +46,6 @@ New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified' -For
 ```
 
 
----
-
 ### **Tout d'abord, Il faut créer une VM**
 
 #### Paramètres de la VM :
@@ -349,7 +347,14 @@ oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource
 
 # Encore à Faire dans vm de config
 
+
+rm winget
+
+
 mettre a jour windows
+
+personnaliser nono
+
 
 net user nono /active:no
 
