@@ -287,20 +287,23 @@ En plus de supprimer les paquets du MicroSoft Store, je lance
 cleanmgr
 ```
 
-Ensuite, j'ouvre un terminal et je lance sysprep définitif avec la commande
+🔴IMPORTANT 
+Prendre un snapshot de la VM avant de lancer sysprep, si ca se passe bien sysprep on continue sinon on revient au snapshot
+
+Ensuite, j'ouvre un terminal et je lance la cqpture du système définitif avec la commande
 
 ```sh
 [Win+R]
 C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
  ```
 
-La VM s'éteint alors. Il est temps de passer à l'etape suivante
+La VM s'éteint alors. Il est temps de passer à l'etape suivante.
 
 ## **3) Capture de l'image de la VM vers install.wim**
 
-Avant tout autre chose, on vérifie que l'iso original de Windows est toujours dans le cdrom de la VM sur VMware, dans le cas contraire, le remettre!
+Avant tout autre chose, on vérifie que l'iso original de Windows est toujours monté dans le cdrom de la VM sur VMware, dans le cas contraire, le remettre!
 
-Maintenant, au redémarrage de la VM, à l'écran de démarrage Bios de VmWare, on mattraque la touche [ESC] pour entrer dans le BIOS. Là on sélectionne de démarrer avec le CdRom pour cette fois-ci en premier.
+Maintenant, au redémarrage de la VM, à l'écran de démarrage Bios de VMWare, on mattraque la touche [ESC] pour entrer dans le BIOS. Là on choisit de démarrer avec le CdRom pour cette fois-ci en premier.
 
 Le cdrom virtuel démarre et on se retrouve à nouveau avec le programme d'installation de Windows.
 On ne va pas plus loin, on appuie sur les touches
@@ -450,7 +453,8 @@ oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource
 # Encore à Faire dans vm de config
 
 mettre a jour windows
-
+enlever check tpm et secure booot ds reg, pas sauvegardé
+dossier confgi nono
 net user nono /active:no
 
 ---
