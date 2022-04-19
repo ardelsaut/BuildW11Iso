@@ -240,7 +240,7 @@ Get-AppxPackage | Select-String "TheDebianProject" | Remove-AppPackage
 # Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} 
 # get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage
 # add-appxpackage -disable developmentmode -register ((Get-AppxPackage Microsoft.SecHealthUI -allusers).InstallLocation + '\AppxManifest.xml')
-Get-AppxPackage -AllUsers | Select-String "Microsoft.SecHealthU" | Remove-AppPackage
+Get-AppxPackage -AllUsers | Select-String "Microsoft.SecHealthUI" | Remove-AppPackage
 
 
 
