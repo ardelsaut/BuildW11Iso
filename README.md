@@ -235,11 +235,11 @@ Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 # Paquet Winget
 Get-AppxPackage | Select-String "winget" | Remove-AppPackage
 Get-AppxPackage | Select-String "TheDebianProject" | Remove-AppPackage
-Get-AppXPackage -AllUsers | Select-String "Microsoft.SecHealthU" | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}
-Get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage
-Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} 
-get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage
-add-appxpackage -disablede velopmentmode -register ((Get-AppxPackage Microsoft.SecHealthUI -allusers).InstallLocation + '\AppxManifest.xml')
+# Get-AppXPackage -AllUsers | Select-String "Microsoft.SecHealthU" | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}
+# Get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage
+# Get-AppXPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”} 
+# get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage
+# add-appxpackage -disable developmentmode -register ((Get-AppxPackage Microsoft.SecHealthUI -allusers).InstallLocation + '\AppxManifest.xml')
 Get-AppxPackage -AllUsers | Select-String "Microsoft.SecHealthU" | Remove-AppPackage
 
 
@@ -271,6 +271,8 @@ cleanmgr /sageset:65535 & Cleanmgr /sagerun:65535
 
 net stop wmpnetworksvc
 
+net user nono /active:no
+
 ```
 
 Sans cela, sysprep ne me laisse pas continuer.
@@ -282,7 +284,6 @@ En plus de supprimer les paquets du MicroSoft Store, je lance
 ```sh
 # Dans un prompt
 [Win+R]
-[cmd.exe]
 # Lancer la commande
 cleanmgr
 ```
@@ -453,9 +454,12 @@ oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource
 # Encore à Faire dans vm de config
 
 mettre a jour windows
+
+
 enlever check tpm et secure booot ds reg, pas sauvegardé
+
 dossier confgi nono
-net user nono /active:no
+
 
 ---
 ---
