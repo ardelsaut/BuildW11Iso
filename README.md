@@ -1,16 +1,27 @@
 # **Créer son propre ISO Windows 11**
 
+
+
 ## Pour cet exemple nous allons créer **NonoOS.iso**
+
 ---
 
 ## **Introduction**
----
-Pour créer son propre iso Windows, Il y a plein de manières différentes. Ici,  on va utiliser **sysprep**.
-C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système custom. 
 
-L'iso alors créé pourra être installé sur plein de machines sans problèmes avec toutes nos personnalisations et programmes. 
+---
+
+Le But de ce tutoriel est d'apprendre à créer son propre **ISO** presonnalisé Windows 11.
+
+Pour créer son propre ISO Windows 11, Il y a plein de manières différentes. Ici,  on va utiliser la méthode **SYSPREP**.
+C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial (le mode **AUDIT**) nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système personnalisé. 
+
+L'ISO alors créé pourra être installé sur plein de machines sans problèmes avec toutes nos personnalisations et programmes. 
+
+---
 
 ## **Prérequis**
+
+---
 
 - [Vmware](https://www.vmware.com/products/workstation-player.html) ou VirtualBox ou Qemu
 - [Windows ADK](https://download.microsoft.com/download/1/f/d/1fd2291e-c0e9-4ae0-beae-fbbe0fe41a5a/adk/adksetup.exe)
