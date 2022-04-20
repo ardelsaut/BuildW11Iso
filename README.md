@@ -313,9 +313,24 @@ La VM s'éteint alors. Il est temps de passer à l'etape suivante.
 
 ## **3) Capture de l'image de la VM vers install.wim**
 
-Avant tout autre chose, on vérifie que l'iso original de Windows est toujours monté dans le cdrom de la VM sur VMware, dans le cas contraire, le remettre!
+Avant tout autre chose, on vérifie que l'**ISO** original de Windows est toujours monté dans le **cdrom de la VM** sur VMware, dans le cas contraire, le remettre!
 
-Maintenant, au redémarrage de la VM, à l'écran de démarrage Bios de VMWare, on mattraque la touche [ESC] pour entrer dans le BIOS. Là on choisit de démarrer avec le CdRom pour cette fois-ci en premier.
+```sh
+Redémarrewr la VM
+```
+
+Maintenant, au redémarrage de la VM
+À l'écran de démarrage Bios de VMWare
+
+```sh
+touche [ESC] # pour entrer dans le BIOS
+```
+
+Là on choisit de 
+
+```sh
+démarrer avec le CdRom.
+```
 
 Le cdrom virtuel démarre et on se retrouve à nouveau avec le programme d'installation de Windows.
 On ne va pas plus loin, on appuie sur les touches
