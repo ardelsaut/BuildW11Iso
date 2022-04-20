@@ -355,7 +355,9 @@ list vol
 ```
 On assigne alors une lettre a nos 2 disques durs
 
-Si vos disques ont une lettre assignée, retirer les lettres déjà assignées
+Si vos disques ont une lettre assignée, retirer les lettres déjà assignées.
+
+Dans mon cas :
 
 On sélectionne les disque concernés :
 
