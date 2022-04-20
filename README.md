@@ -371,9 +371,9 @@ On retire les lettres assignées :
 remove letter=C
 ```
 
-, donc je les assigne!
+On peut alors assigner les lettres désirées :
 
-Je constate que mes disques dur n'ont pas de lettres assignées
+(Toujours dans diskpart)
 
 Mon disque source avec le Windows que je viens de configuré se trouve sur le Volume 1, donc
 
