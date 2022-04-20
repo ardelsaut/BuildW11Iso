@@ -373,7 +373,7 @@ remove letter=C
 
 On peut alors assigner les lettres désirées :
 
-(Toujours dans diskpart)
+**(Toujours dans diskpart)**
 
 Mon disque source avec le Windows que je viens de configuré se trouve sur le Volume 1, donc
 
