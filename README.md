@@ -329,7 +329,7 @@ touche [ESC] # pour entrer dans le BIOS
 Là on choisit de 
 
 ```sh
-démarrer avec le CdRom.
+Démarrer avec le CdRom.
 ```
 
 Le cdrom virtuel démarre et on se retrouve à nouveau avec le programme d'installation de Windows.
@@ -353,8 +353,25 @@ On liste tous les volumes pour voir nos 2 disques durs :
 ```sh
 list vol
 ```
+On assigne alors une lettre a nos 2 disques durs
 
-Je constate que mes disques dur n'ont pas de lettres assignées, donc je les assigne!
+Si vos disques ont une lettre assignée, retirer les lettres déjà assignées
+
+On sélectionne les disque concernés :
+
+```sh
+sel vol 4
+```
+
+On retire les lettres assignées :
+
+```sh
+remove letter=C
+```
+
+, donc je les assigne!
+
+Je constate que mes disques dur n'ont pas de lettres assignées
 
 Mon disque source avec le Windows que je viens de configuré se trouve sur le Volume 1, donc
 
