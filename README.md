@@ -26,7 +26,7 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 ---
 
-- [Vmware](https://www.vmware.com/products/workstation-player.html) ou VirtualBox ou Qemu
+- [Vmware](https://www.vmware.com/products/workstation-player.html) ou [VirtualBox](https://download.virtualbox.org/virtualbox/6.1.34/VirtualBox-6.1.34-150636-Win.exe) ou [Qemu](https://qemu.weilnetz.de/w64/qemu-w64-setup-20220419.exe)
 - [Windows ADK](https://download.microsoft.com/download/1/f/d/1fd2291e-c0e9-4ae0-beae-fbbe0fe41a5a/adk/adksetup.exe)
 - [Windows 11](https://www.microsoft.com/es-es/software-download/windows11) : Une machine hôte à jour avec Windows 11 installé et une VM avec win11 que l´on clonera
 - Iso Live Install [**Fedora**](https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/test/36_Beta/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-36_Beta-1.4.iso) (Optionnel)
