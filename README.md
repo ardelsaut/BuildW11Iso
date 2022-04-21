@@ -200,7 +200,7 @@ On a choisit notre Solution ! On va pouvoir commencer l'installation.
 
 On va commencer par installer **Windows 11 Officiel**, pas besoin de clés!
 
-Lorsque l'on est sur l'écran de sélection des Éditions de Windows, on appuie sur les touches du clavier suivantes, pour éditer les clés de Registre.
+Lorsque l'on est sur le premier écran d'installation de Windows, on appuie sur les touches du clavier suivantes, pour éditer les clés de Registre. Et nous permettre de pouvoir continuer à installer Windows 11.
    
     [Shift] + [F10]
 
