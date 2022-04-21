@@ -38,32 +38,20 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 ## **Mise En Place de L'Espace de Travail sur le système HÔTE**:
 
-### On crée les **dossiers nécessaires**
-
-On crée un dossier :
-
-    New-Item -ItemType Directory -Path "C:\NonoOS-Build-Ssd" -Force
-
-On crée un dossier :
-
-     New-Item -ItemType Directory -Path "C:\NonoOS-Build-Ssd\WinSource" -Force
-
-On crée un dossier :
-
-```sh
-New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\CaptureVM' -Force
-```
-
-On crée un dossier :
-
-```sh
-New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified' -Force
-```
-
-
 ---
 
-### **Tout d'abord, Il faut créer une VM**
+### On crée les **dossiers de Travail** :
+
+```sh
+New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource' -Force
+```
+
+```sh
+New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel' -Force
+```
+
+
+### **Créer une VM**
 
 #### Paramètres de la VM :
     - UEFI
