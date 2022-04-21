@@ -90,7 +90,7 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
     - périphérique Cdrom attaché
 
 <details>
-  <summary>Imprim d'Écran setup VMWare</summary>
+  <summary>Imprim d'Écran setup VMWare 1</summary>
   
 Écran 1
 
@@ -149,6 +149,17 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
 ![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm14.png?raw=true)
 
 </details>
+
+<details>
+  <summary>Imprim d'Écran setup VMWare 2</summary>
+  
+Écran 1
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+
+
+</details>
+
 
 Dans ce tuto, je vais éditer le registre pour pouvoir installer Windows 11 sur une vm sans le minimum requis, si vous décidez de sauter cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows 11.
 
