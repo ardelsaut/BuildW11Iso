@@ -283,7 +283,9 @@ Maintenant qu'on est sur le premier écran de configuration (écran de sélectio
 
 Pour entrer directement en mode audit
 
-    [Ctrl]+[Shift]+[F3]
+```powershell   
+[Ctrl]+[Shift]+[F3]
+```
 
 Le pc va alors redémarrer en mode audit.
 
@@ -310,8 +312,10 @@ New-Item -ItemType Directory -Path 'E:\Scratch' -Force
 
 #### Sur le nouveau **Bureau** dans la **VM** :
 
-    On fait apparaitre la fenêtre "exécuter"
-    [Win+R]
+```powershell   
+# On fait apparaitre la fenêtre "exécuter"
+[Win+R]
+```
 
 
 Le pc va alors redémarrer, cela va prendre un certain temps, et il démarrera automatiquement avec une session utilisateur **Administrateur** active. C'est dans cette session que l'on va faire tout nos changements avant de pouvoir les capturer. 
