@@ -73,7 +73,9 @@ Voilà, notre dossier backup avec un **windows clean est mis en place**, mainten
 Copy-Item -Path "C:\NonoOS-Build-Ssd\WinSource" -Destination "C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel" -Recurse -Force
 ```
 
-Le Fichier qui nous intéresse se situe (dans mon cas) : **"C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\sources\install.wim"**
+Le Fichier qui nous intéresse se situe (dans mon cas) :
+
+**"C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\sources\install.wim"**
 
 Ce sera le fichier qui contiendra toutes nos modifications !
 
