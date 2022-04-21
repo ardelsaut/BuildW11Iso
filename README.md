@@ -18,7 +18,7 @@ Ici,  on va utiliser la méthode **SYSPREP** et **Generalize**.
 
 C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial (le mode **AUDIT**), nous permettant de personnaliser à notre guise et de capturer ensuite l'image de ce système personnalisé. 
 
-L'ISO alors créé pourra être installé sur plusieures machines différentes sans problèmes avec toutes nos personnalisations et programmes. 
+L'ISO alors créé pourra être installé sur plusieures machines différentes sans problèmes avec toutes nos personnalisations, mises à jour, programmes,... . 
 
 ---
 
@@ -29,13 +29,12 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 - [Vmware](https://www.vmware.com/products/workstation-player.html) ou VirtualBox ou Qemu
 - [Windows ADK](https://download.microsoft.com/download/1/f/d/1fd2291e-c0e9-4ae0-beae-fbbe0fe41a5a/adk/adksetup.exe)
 - [Windows 11](https://www.microsoft.com/es-es/software-download/windows11) : Une machine hôte à jour avec Windows 11 installé et une VM avec win11 que l´on clonera
-- [Iso Live Install **Fedora**](https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/test/36_Beta/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-36_Beta-1.4.iso)
+- Iso Live Install [**Fedora**](https://ftp-stud.hs-esslingen.de/pub/fedora/linux/releases/test/36_Beta/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-36_Beta-1.4.iso) (Optionnel)
 - Fichier ['unattend.xml'](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/Fichiers-Unattended/copyprofile.xml) (Optionnel)
-- Un serveur ou une Clé Usb ou un Drive
+- Un serveur ou une Clé Usb ou un Drive (Optionnel)
 - Beaucoup d´espace Disque
 - Beaucoup de Ram
 
----
 
 ## **Mise En Place de L'Espace de Travail sur le système HÔTE**:
 
