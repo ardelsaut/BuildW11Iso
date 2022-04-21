@@ -152,10 +152,25 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
 
 <details>
   <summary>Imprim d'Écran setup VMWare 2</summary>
-  
+
 Écran 1
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-final/vm-final-1.png?raw=true)
+
+
+Écran 2
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-final/vm-final-2.png?raw=true)
+
+
+Écran 3
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-final/vm-final-3.png?raw=true)
+
+
+Écran 4
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-final/vm-final-4.png?raw=true)
 
 
 </details>
