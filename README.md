@@ -198,7 +198,8 @@ On a choisit notre Solution ! On va pouvoir commencer l'installation.
 
 # **Lancement de la Machine Virtuelle**
 
-On va commencer par installer windows 11, pas besoin de clés!
+On va commencer par installer **Windows 11 Officiel**, pas besoin de clés!
+
 Lorsque l'on est sur l'écran de sélection des Éditions de Windows, on appuie sur les touches du clavier suivantes, pour éditer les clés de Registre.
    
     [Shift] + [F10]
