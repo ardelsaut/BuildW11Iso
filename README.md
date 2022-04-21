@@ -285,13 +285,48 @@ Pour entrer directement en mode audit
 [Ctrl]+[Shift]+[F3]
 ```
 
-Le pc va alors redémarrer en mode audit.
+Le pc va alors redémarrer, cela va prendre un certain temps, et il démarrera automatiquement avec une session utilisateur **Administrateur** active (C'est le mode **AUDIT**). C'est dans cette session que l'on va faire tout nos changements avant de pouvoir les capturer. 
 
-Le pc redémarré, nous sommes sur le Compte Administrateur, on peut commencer à personnaliser ce que l'on veut.
+Remarquez qu'une application apparait au démarrage, c'est sysprep. Vous pouvez la fermer avec la croix.
 
-Avant tout, éteignez la vm pour ajouter un second hdd
+🔴IMPORTANT 
+
+Avant de faire tout autre chose, il est <span style="color:red">**indispensable**</span> d'activer le deuxième hdd créé avec la VM.
+
+Éteignez la vm pour ajouter un second hdd. Une fois cela fait :
 
 Redémarrez la VM et pensez à formatter (NTFS) le second hdd, le nommer 'Data'
+
+<details>
+  <summary>En Gui :</summary>
+se rendre dans de gestionnaire de disque
+
+Nommer **'Windows'** le premier hdd
+
+**activer** et **formatter** ainsi que **nommer** **'Data'** et **aasigner** lettre **G:\\** le second hdd.
+</details>
+
+<details>
+  <summary>En CLI :</summary>
+
+Dans Powershell
+
+```batch
+diskpart
+list disk
+sel disk 1 # Mon hhd 2 nouvellement crée
+clean
+create partition primary
+format fs=ntfs
+list vol
+sel vol 4 # Mon hdd 2
+assign letter=G
+exit
+# Je nomme les 2 hdds
+label C:Windows
+label G:Data
+```
+</details>
 
 Sur le second hdd nommé 'Data', créer un dossier nommé Scratch
 
@@ -299,10 +334,10 @@ Dans mon cas :
 
 ```powershell
 # Dans la Vm
-New-Item -ItemType Directory -Path 'E:\Scratch' -Force
+New-Item -ItemType Directory -Path 'G:\Scratch' -Force
 ```
 
-
+Ce sera le dossier de travail pour notre **'install.wim'** lors de la création de notre **'install.wim custom'**
 
 ---
 
@@ -316,49 +351,11 @@ New-Item -ItemType Directory -Path 'E:\Scratch' -Force
 ```
 
 
-Le pc va alors redémarrer, cela va prendre un certain temps, et il démarrera automatiquement avec une session utilisateur **Administrateur** active. C'est dans cette session que l'on va faire tout nos changements avant de pouvoir les capturer. 
-
-Remarquez qu'une application apparait au démarrage, c'est sysprep. Vous pouvez la fermer avec la croix.
-
-🔴IMPORTANT 
-
-Il est <span style="color:red">**indispensable**</span> d'activer le deuxième hdd créé avec la VM
-
-**En Gui** :
-
-se rendre dans de gestionnaire de disque
-
-Nommer **'Windows'** le premier hdd
-
-**activer** et **formatter** ainsi que **nommer** **'Data'** et **aasigner** lettre **G:\\** le second hdd. 
-
-**En CLI** :
-
-Dans Poershell
-
-```batch
-diskpart
-list disk
-sel disk 1
-clean
-create partition primary
-format fs=ntfs
-list vol
-sel vol 4
-assign letter=G
-exit
-
-label C:Windows
-label G:Data
-```
 
 
 
-Une fois le deuxième disque formatté, créer un dossier nommé **Scratch** à la racine de celui-ci  !
-```powershell
-# Dans cmd.exe 
-New-Item -ItemType Directory -Path "G:\Scratch" -Force
-```
+
+
 
 
 🔴IMPORTANT 
