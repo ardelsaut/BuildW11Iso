@@ -43,11 +43,11 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 On ouvre **Powershell en Administrateur** :
 
-```sh
+```powershell
 New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource' -Force
 ```
 
-```sh
+```powershell
 New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel' -Force
 ```
 
@@ -55,7 +55,7 @@ On monte alors notre **ISO Win11 source** pour pouvoir copier les fichiers et do
 
 Dans mon cas :
 
-```sh
+```powershell
 $myISO =  "D:\Images Isos\Win11_French_x64.iso" # Pensez à mettre votre chemin Iso
 Mount-DiskImage -ImagePath "$myISO"
 $vol = Get-DiskImage $myISO | Get-Volume
@@ -63,13 +63,13 @@ $SourceDrive = $vol.DriveLetter + ':'
 ```
 On copie les fichiers Win11\Source dans notre **Dossier de Travail**
 
-```sh
+```powershell
 Copy-Item -Path "$SourceDrive\*" -Destination "C:\NonoOS-Build-Ssd\WinSource" -Recurse -Force
 ```
 
 Voilà, notre dossier backup avec un **windows clean est mis en place**, maintenant on copie ce dossier vers le dossier de notre futur **Win11 Custom**
 
-```sh
+```powershell
 Copy-Item -Path "C:\NonoOS-Build-Ssd\WinSource" -Destination "C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel" -Recurse -Force
 ```
 
@@ -192,7 +192,7 @@ Je choisis donc la solution du Bypass pour pouvoir mapper les lecteurs de VMware
     
 Voir [ici](https://github.com/ardelsaut/BuildW11Iso/tree/main/archives/pictures-git/VMWare) la config de ma VM
 
-On a choisit notre Solution ! On va pouvoir commencer l'installation.
+On a choisit notre solution ! On va pouvoir commencer l'installation.
 
 ---
 
@@ -217,51 +217,52 @@ On navigue alors vers le répertoire
 ' **HKEY_LOCAL_MACHINE->SYSTEM->Setup** '
 
 Clique droit sur :
-```sh
+```powershell
 setup
 ```
-```sh
+```powershell
 ->nouveau->clé
 ```
 Nom de la nouvelle clé :
-```sh
+```powershell
 Labconfig
 ```
 Dans la Nouvelle Clé :
 
-```sh
+```powershell
 [Right + Click]->Nouvelle->Valeur DWORD (32-bit)
 ```
 Nom de la nouvelle Valeur :
-```sh
+```powershell
 BypassTPMCheck
 ```
 Dans la Nouvelle Clé à nouveau :
-```sh
+```powershell
 [Right + Click]->Nouvelle->Valeur DWORD (32-bit)
 ```
 Nom de la nouvelle Valeur :
-```sh
+```powershell
 BypassSecureBootCheck
 ```
 
 on double clique sur chaque clés créées et on leur donne comme Valeur
-```sh
+```powershell
 1 
 ```
 
 ## En CLI
 
-```sh
+```powershell
 REG ADD HKLM\SYSTEM\Setup\Labconfig /v BypassTPMCheck /t REG_DWORD /d 1
+
 REG ADD HKLM\SYSTEM\Setup\Labconfig /v BypassSecureBootCheck /t REG_DWORD /d 1
 ```
 
 Voilà, on a Bypass le check de Windows 11, on peut fermer Regedit et l'Invite de Commande pour continuer l'installation.
 
-On continue d'installer Windows **normalement**. On ne va pas plus loin que le premier redémarrage, une fois Windows installé sur C.\
+On continue d'installer Windows **normalement**. On ne va pas plus loin que le premier redémarrage, une fois Windows installé sur C.\ .
 
-Maintenant qu'on est sur le premier écran de configuration (écran de sélection de la Région), on va directement faire rentrer Windows en mode Audit, comme ça on évite de créer un nouvel utilisateur.
+Maintenant qu'on est sur le premier écran de configuration (écran de sélection de la Région), on va directement faire rentrer Windows en mode Audit, comme ça on évite de devoir créer un nouvel utilisateur.
 
 Pour entrer directement en mode audit
 
@@ -270,6 +271,21 @@ Pour entrer directement en mode audit
 Le pc va alors redémarrer en mode audit.
 
 Le pc redémarré, nous sommes sur le Compte Administrateur, on peut commencer à personnaliser ce que l'on veut.
+
+Avant tout, éteignez la vm pour ajouter un second hdd
+
+Redémarrez la VM et pensez à formatter (NTFS) le second hdd, le nommer 'Data'
+
+Sur le second hdd nommé 'Data', créer un dossier nommé Scratch
+
+Dans mon cas :
+
+```powershell
+# Dans la Vm
+New-Item -ItemType Directory -Path 'E:\Scratch' -Force
+```
+
+
 
 ---
 
@@ -301,7 +317,7 @@ Nommer **'Windows'** le premier hdd
 
 Dans Poershell
 
-```sh
+```batch
 diskpart
 list disk
 sel disk 1
@@ -320,7 +336,7 @@ label G:Data
 
 
 Une fois le deuxième disque formatté, créer un dossier nommé **Scratch** à la racine de celui-ci  !
-```sh
+```powershell
 # Dans cmd.exe 
 New-Item -ItemType Directory -Path "G:\Scratch" -Force
 ```
@@ -357,7 +373,7 @@ Avant cela, il va falloir un peu nettoyer Windows. Cela évitera de compiler des
 
 Dans mon cas, avant de lancer sysprep, il a fallu que je supprime.
 
-```sh
+```powershell
 # Paquet Winget
 Get-AppxPackage | Select-String "winget" | Remove-AppPackage
 Get-AppxPackage | Select-String "TheDebianProject" | Remove-AppPackage
@@ -407,7 +423,7 @@ Il est possible de consulter le fichier log contenant toutes les erreurs quelque
 
 En plus de supprimer les paquets du MicroSoft Store, je lance
 
-```sh
+```powershell
 # Dans un prompt
 [Win+R]
 # Lancer la commande
@@ -419,7 +435,7 @@ Prendre un snapshot de la VM avant de lancer sysprep, si ca se passe bien syspre
 
 Ensuite, j'ouvre un terminal et je lance la cqpture du système définitif avec la commande
 
-```sh
+```powershell
 [Win+R]
 C:\Windows\System32\Sysprep\Sysprep /generalize /oobe /shutdown /unattend:T:\PC\Windows\BuildW11Iso\archives\Fichiers-Unattended\CopyProfile.xml
  ```
@@ -430,27 +446,27 @@ La VM s'éteint alors. Il est temps de passer à l'etape suivante.
 
 Avant tout autre chose, on vérifie que l'**ISO** original de Windows est toujours monté dans le **cdrom de la VM** sur VMware, dans le cas contraire, le remettre!
 
-```sh
+```powershell
 Redémarrewr la VM
 ```
 
 Maintenant, au redémarrage de la VM
 À l'écran de démarrage Bios de VMWare
 
-```sh
+```powershell
 touche [ESC] # pour entrer dans le BIOS
 ```
 
 Là on choisit de 
 
-```sh
+```powershell
 Démarrer avec le CdRom.
 ```
 
 Le cdrom virtuel démarre et on se retrouve à nouveau avec le programme d'installation de Windows.
 On ne va pas plus loin, on appuie sur les touches
 
-```sh
+```powershell
 [Shift]+[F10]
 ```
 
@@ -458,14 +474,14 @@ Un terminal s'ouvre alors. On peut remarquer que l'on est sur le lecteur **'X:\ 
 
 Dans le Terminal :
 
-```sh
+```batch
 diskpart
 ```
 - On Remarque que le prompt change nous indiquant que l'on est bien dans Diskpart.
 
 On liste tous les volumes pour voir nos 2 disques durs :
 
-```sh
+```batch
 list vol
 ```
 On assigne alors une lettre a nos 2 disques durs
@@ -476,13 +492,13 @@ Dans mon cas :
 
 On sélectionne les disque concernés :
 
-```sh
+```batch
 sel vol 4
 ```
 
 On retire les lettres assignées :
 
-```sh
+```batch
 remove letter=C
 ```
 
@@ -494,37 +510,37 @@ Mon disque source avec le Windows que je viens de configuré se trouve sur le Vo
 
 Pour le 1er disque, on le sélectionne d'abord :
 
-```sh
+```batch
 sel vol 1
 ```
 
 ensuite, on lui assigne la lettre correcte :
 
-```sh
+```batch
 assign letter=E
 ```
 
 Pour le 2ieme disque (Celui qui recevra le fichiers install.wim capturé), on le sélectionne d'abord :
 
-```sh
+```batch
 sel vol 4
 ```
 
 ensuite, on lui assigne la lettre correcte :
 
-```sh
+```batch
 assign letter=G
 ```
 
 On peut alors quitter DiskPart :
 
-```sh
+```batch
 exit
 ```
 
 Il est temps de lancer la capture de notre **install.wim custom**. Dans mon cas :
 
-```sh
+```powershell
 dism /capture-image /imagefile:G:\install.wim /capturedir:E:\ /ScratchDir:G:\Scratch /name:"NonoOS" /compress:maximum /checkintegrity /verify /bootable
 ```
 
@@ -588,7 +604,7 @@ On remplace alors **install.wim** dans le dossier par notre **install.wim custom
 
 Notre Dossier avec tout Windows est alors **FINI**.
 
-```sh
+```powershell
 # Ouvrir cmd Dans Adk kit avec la Commande:
 [Win+R]
 C:\Windows\system32\cmd.exe /k "C:\Program Files (x86)\Windows Kits\11\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat" 
@@ -596,17 +612,14 @@ C:\Windows\system32\cmd.exe /k "C:\Program Files (x86)\Windows Kits\11\Assessmen
 
 et faire :
 
-```sh
+```batch
 # Pour enlever la longueur du Prompt
 cd\
 ```
 ```sh
 # Utiliser la Commande:
 # C:\Windows\system32\cmd.exe /k "C:\Program Files (x86)\Windows Kits\11\Assessment and Deployment Kit\Deployment Tools\DandISetEnv.bat" 
-
-
 oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\NonoOS-Build-Ssd\WinSource-modified\boot\etfsboot.com#pEF,e,bC:\NonoOS-Build-Ssd\WinSource-modified\efi\microsoft\boot\efisys.bin C:\NonoOS-Build-Ssd\WinSource-modified C:\NonoOS-Build-Ssd\NonoOS.iso
-
 ```
 
 ## **Testez l'Iso !**
@@ -626,7 +639,7 @@ dossier confgi nono
 
 # **WinPE**
 
-```sh
+```powershell
 copype amd64 C:\WinpE_amd64
 MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_amd64\WinPE_amd64.iso
 ```
