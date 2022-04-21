@@ -42,6 +42,8 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 ### On crée les **dossiers de Travail** :
 
+On ouvre powershell en administrateur :
+
 ```sh
 New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource' -Force
 ```
@@ -50,8 +52,35 @@ New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource' -Force
 New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel' -Force
 ```
 
+On monte alors notre **ISO Win11 source** pour pouvoir copier les fichiers et dossiers de l'**ISO**
+
+Dans mon cas :
+
+```sh
+$myISO =  "D:\Images Isos\Win11_French_x64.iso" # Pensez à mettre votre chemin Iso
+Mount-DiskImage -ImagePath "$myISO"
+$vol = Get-DiskImage $myISO | Get-Volume
+$SourceDrive = $vol.DriveLetter + ':'
+Start-Sleep -s 2
+Copy-Item -Path "$SourceDrive\*" -Destination "C:\NonoOS-Build-Ssd\WinSource" -Recurse -Force
+```
+
+Voilà, notre dossier backup avec un **windows clean est mis en place**, maintenant on copie ce dossier vers le dossier de notre futur **Win!! Custom**
+
+```sh
+Copy-Item -Path "C:\NonoOS-Build-Ssd\WinSource" -Destination "C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel" -Recurse -Force
+```
+
+Le Fichier qui nous intéresse se situe (dans mon cas) : "C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel\sources\install.wim"
+
+Ce sera le fichier qui contiendra toutes nos modifications !
+
+On peut commencer à mettre en place la VM
 
 ### **Créer une VM**
+
+Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne sera pas la plus simple, mais par la suite, l'utilisation sera grandement facilitée !
+
 
 #### Paramètres de la VM :
     - UEFI
@@ -59,7 +88,17 @@ New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource-modified-fonct
     - 2 hdd min 50gb (compatible Windows)
     - 8gb ram
     - périphérique Cdrom attaché
-        
+
+<details>
+  <summary>Imprim d'Écran setup VMWare</summary>
+  
+  Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
+  
+  ```javascript
+  console.log("I'm a code block!");
+  ```
+</details>
+
 Dans ce tuto, je vais éditer le registre pour pouvoir installer Windows 11 sur une vm sans le minimum requis, si vous décidez de sauter cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows 11.
 
     - Secure Boot activé (On va le bypass ici, mais optionnel)
