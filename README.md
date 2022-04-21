@@ -92,11 +92,21 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
 <details>
   <summary>Imprim d'Écran setup VMWare</summary>
   
-  Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
-  
-  ```javascript
-  console.log("I'm a code block!");
-  ```
+Écran 1
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+
+Écran 2
+
+Écran 3
+
+Écran 4
+
+Écran 5
+
+Écran 6
+
+Écran 7
+
 </details>
 
 Dans ce tuto, je vais éditer le registre pour pouvoir installer Windows 11 sur une vm sans le minimum requis, si vous décidez de sauter cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows 11.
