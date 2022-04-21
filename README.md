@@ -61,6 +61,9 @@ Mount-DiskImage -ImagePath "$myISO"
 $vol = Get-DiskImage $myISO | Get-Volume
 $SourceDrive = $vol.DriveLetter + ':'
 Start-Sleep -s 2
+```
+
+```sh
 Copy-Item -Path "$SourceDrive\*" -Destination "C:\NonoOS-Build-Ssd\WinSource" -Recurse -Force
 ```
 
