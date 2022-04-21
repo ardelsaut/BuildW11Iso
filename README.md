@@ -175,16 +175,20 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
 
 </details>
 
+Si vous essayez d'installer Win11 maintenant, Windows vous empechera d'aller plus loin que l'installation car la VM n'a pas la configuration minimum requise.
 
 Dans ce tuto, je vais éditer le registre pour pouvoir installer Windows 11 sur une vm sans le minimum requis, si vous décidez de sauter cette étape, vous devez activez ces modules dans VMware pour pouvoir installer Windows 11.
 
     - Secure Boot activé (On va le bypass ici, mais optionnel)
     - encrypted (pour module TPM) (On va le bypass ici, mais optionnel)
 
-Je choisis de Bypass pour pouvoir mapper les lecteurs de VMware sur la machine Hote. Si on crypte la vm comme nécessaire pour le module TPMon ne peut plus mapper les Lecteurs.
-    
+Le problème de cette solution, est qu' il faudrait passer par par un **live-cd** pour accéder au hdd de la vm car celle-ci est encryptée et donc le hdd ne peut être monté sur la **machine Hôte**
 
-Voir [ici]() la config de ma VM
+Je choisis donc la solution du Bypass pour pouvoir mapper les lecteurs de VMware sur la machine Hôte. Si on crypte la VM comme nécessaire pour le module TPM, on ne peut plus mapper les Lecteurs.
+    
+Voir [ici](https://github.com/ardelsaut/BuildW11Iso/tree/main/archives/pictures-git/VMWare) la config de ma VM
+
+On a choisit notre Solution ! On va pouvoir commencer l'installation.
 
 ---
 
