@@ -12,10 +12,13 @@
 
 Le But de ce tutoriel est d'apprendre à créer son propre **ISO** presonnalisé Windows 11.
 
-Pour créer son propre ISO Windows 11, Il y a plein de manières différentes. Ici,  on va utiliser la méthode **SYSPREP**.
-C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial (le mode **AUDIT**) nous permettant de personnaliser à notre guise, et de capturer ensuite l'image de ce système personnalisé. 
+Pour créer son propre ISO Windows 11, il y a plusieures manières différentes.
 
-L'ISO alors créé pourra être installé sur plein de machines sans problèmes avec toutes nos personnalisations et programmes. 
+Ici,  on va utiliser la méthode **SYSPREP** et **Generalize**.
+
+C'est-à-dire qu'on va faire rentrer Windows dans un mode spécial (le mode **AUDIT**), nous permettant de personnaliser à notre guise et de capturer ensuite l'image de ce système personnalisé. 
+
+L'ISO alors créé pourra être installé sur plusieures machines différentes sans problèmes avec toutes nos personnalisations et programmes. 
 
 ---
 
