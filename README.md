@@ -295,13 +295,14 @@ Avant de faire tout autre chose, il est <span style="color:red">**indispensable*
 
 Éteignez la vm pour ajouter un second hdd. Une fois cela fait :
 
-Redémarrez la VM et pensez à formatter (NTFS) le second hdd, le nommer 'Data'
+Redémarrez la VM et pensez à formatter (NTFS) le second hdd, le nommer 'Data'.
 
 <details>
   <summary>En Gui :</summary>
-se rendre dans de gestionnaire de disque
 
-Nommer **'Windows'** le premier hdd
+se rendre dans de gestionnaire de disque.
+
+Nommer **'Windows'** le premier hdd.
 
 **activer** et **formatter** ainsi que **nommer** **'Data'** et **aasigner** lettre **G:\\** le second hdd.
 </details>
@@ -328,7 +329,9 @@ label G:Data
 ```
 </details>
 
-Sur le second hdd nommé 'Data', créer un dossier nommé Scratch
+---
+
+Sur le second hdd nommé 'Data', créer un dossier nommé **'Scratch'**.
 
 Dans mon cas :
 
@@ -337,37 +340,23 @@ Dans mon cas :
 New-Item -ItemType Directory -Path 'G:\Scratch' -Force
 ```
 
-Ce sera le dossier de travail pour notre **'install.wim'** lors de la création de notre **'install.wim custom'**
+Ce sera le dossier de travail pour notre **'install.wim'** lors de la création de notre **'install.wim custom'**.
 
 ---
 
-## On peut **commencer la procédure** !
+🔴IMPORTANT 
 
-#### Sur le nouveau **Bureau** dans la **VM** :
-
-```powershell   
-# On fait apparaitre la fenêtre "exécuter"
-[Win+R]
-```
-
-
-
-
-
-
-
-
+- **Mettre à jour Windows sur la VM avant toute modification**, vous pouvez redémarrer la machine, elle reviendra en mode audit sur le compte Administrateur.
+- Supprimer l'utilisateur créé lors de l'installation (Optionnel si vous avez choisi de ne pas passer directement en mode audit).
 
 🔴IMPORTANT 
-- Penser dabord à :
-    - Mettre à jour la Windows sur la VM avant toute modification, vous pouvez redémarrer la machine, elle reviendra en mode audit sur le compte Administrateur.
-    - Supprimer l'utilisateur créé lors de l'installation (Optionnel si vous avez choisi de ne pas passer directement en mode audit)
+
+- Prendre à ce moment un snapshot de la VM pour avoir un **template** clean en cas de dysfonctionnement lors de la **personnalisation** et pour pouvoir revenir à un **état propre de la VM** sans devoir se **retaper toute l'installation**; l'appeler "Template-avant-sysprep"
 
 ---
 
 ## **1) Dans le mode audit (toujours dans la VM)**
 
-Une fois cela fait, pensez à prendre un Snapshot et l'appeler "Template-avant-sysprep", cela nous servira pour pouvoir retourner à un état d'origine stable en cas de dysfonctionnement, sans devoir se retaper toute l'installation.  
 
 On peut commencer alors à faire nos modifications, comme par exemple :
 
@@ -379,8 +368,7 @@ On peut commencer alors à faire nos modifications, comme par exemple :
 - **Créer des Utilisateurs** et les personnaliser,
 - ...
 
-**ATTENTION** : Les applications du MicroSoft Store ne sont pas compatibles, il faut trouver des alternatives pour les installer.
-
+🔴IMPORTANT **ATTENTION** : Les applications du MicroSoft Store ne sont pas compatibles, il faut trouver des alternatives pour les installer.
 
 ## **2) Personnalisation terminée**
 
