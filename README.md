@@ -41,7 +41,7 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 ### On crée les **dossiers de Travail** :
 
-On ouvre powershell en administrateur :
+On ouvre **Powershell en Administrateur** :
 
 ```sh
 New-Item -ItemType Directory -Path 'C:\NonoOS-Build-Ssd\WinSource' -Force
