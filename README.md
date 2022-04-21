@@ -93,19 +93,32 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
   <summary>Imprim d'Écran setup VMWare</summary>
   
 Écran 1
+
 ![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
 
 Écran 2
 
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+
 Écran 3
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
 
 Écran 4
 
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+
 Écran 5
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
 
 Écran 6
 
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+
 Écran 7
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
 
 </details>
 
