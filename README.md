@@ -60,14 +60,14 @@ $myISO =  "D:\Images Isos\Win11_French_x64.iso" # Pensez à mettre votre chemin 
 Mount-DiskImage -ImagePath "$myISO"
 $vol = Get-DiskImage $myISO | Get-Volume
 $SourceDrive = $vol.DriveLetter + ':'
-Start-Sleep -s 2
 ```
+On copie les fichiers Win11\Source dans notre **Dossier de Travail**
 
 ```sh
 Copy-Item -Path "$SourceDrive\*" -Destination "C:\NonoOS-Build-Ssd\WinSource" -Recurse -Force
 ```
 
-Voilà, notre dossier backup avec un **windows clean est mis en place**, maintenant on copie ce dossier vers le dossier de notre futur **Win!! Custom**
+Voilà, notre dossier backup avec un **windows clean est mis en place**, maintenant on copie ce dossier vers le dossier de notre futur **Win11 Custom**
 
 ```sh
 Copy-Item -Path "C:\NonoOS-Build-Ssd\WinSource" -Destination "C:\NonoOS-Build-Ssd\WinSource-modified-fonctionnel" -Recurse -Force
