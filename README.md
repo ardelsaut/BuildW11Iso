@@ -36,9 +36,7 @@ L'ISO alors créé pourra être installé sur plusieures machines différentes s
 
 
 ## **Mise En Place de L'Espace de Travail sur le système HÔTE**:
-
 ---
-
 ### On crée les **dossiers de Travail** :
 
 On ouvre **Powershell en Administrateur** :
