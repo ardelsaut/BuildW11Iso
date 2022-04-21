@@ -202,53 +202,70 @@ On va commencer par installer **Windows 11 Officiel**, pas besoin de clés!
 
 Lorsque l'on est sur le premier écran d'installation de Windows, on appuie sur les touches du clavier suivantes, pour éditer les clés de Registre. Et nous permettre de pouvoir continuer à installer Windows 11.
    
-    [Shift] + [F10]
+```powershell   
+[Shift] + [F10]
+```
 
 pour ouvrir l'Invite de Commande
 
 ## En gui
 
 On écrit sur l'invite de Commande qui vient d'apparaitre
-    
-    regedit + [ENTER]
+
+```powershell   
+regedit + [ENTER]
+```
 
 On navigue alors vers le répertoire
 
 ' **HKEY_LOCAL_MACHINE->SYSTEM->Setup** '
 
 Clique droit sur :
+
 ```powershell
 setup
 ```
+
 ```powershell
 ->nouveau->clé
 ```
+
 Nom de la nouvelle clé :
+
 ```powershell
 Labconfig
 ```
+
 Dans la Nouvelle Clé :
 
 ```powershell
 [Right + Click]->Nouvelle->Valeur DWORD (32-bit)
 ```
+
 Nom de la nouvelle Valeur :
+
 ```powershell
 BypassTPMCheck
 ```
+
 Dans la Nouvelle Clé à nouveau :
+
 ```powershell
 [Right + Click]->Nouvelle->Valeur DWORD (32-bit)
 ```
+
 Nom de la nouvelle Valeur :
+
 ```powershell
 BypassSecureBootCheck
 ```
 
 on double clique sur chaque clés créées et on leur donne comme Valeur
+
 ```powershell
 1 
 ```
+
 
 ## En CLI
 
