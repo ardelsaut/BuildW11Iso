@@ -98,27 +98,55 @@ Ici plusieures approches sont possibles. Dans ce cas-ci, la mise en place ne ser
 
 Écran 2
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm2.png?raw=true)
 
 Écran 3
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm3.png?raw=true)
 
 Écran 4
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm4.png?raw=true)
 
 Écran 5
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm5.png?raw=true)
 
 Écran 6
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm6.png?raw=true)
 
 Écran 7
 
-![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm1.png?raw=true)
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm7.png?raw=true)
+
+Écran 8
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm8.png?raw=true)
+
+Écran 9
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm9.png?raw=true)
+
+Écran 10
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm10.png?raw=true)
+
+Écran 11
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm11.png?raw=true)
+
+Écran 12
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm12.png?raw=true)
+
+Écran 13
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm13.png?raw=true)
+
+Écran 14
+
+![Écran 1](https://github.com/ardelsaut/BuildW11Iso/blob/main/archives/pictures-git/VMWare/setup-1/vm14.png?raw=true)
 
 </details>
 
